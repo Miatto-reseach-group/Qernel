@@ -26,8 +26,6 @@ class BaseState(ABC):
     """
     Abstract class of a quantum state
     """
-    # _ket: Optional[np.array]
-    # _dm: Optional[np.array]
 
     def __init__(self):
         super().__init__()

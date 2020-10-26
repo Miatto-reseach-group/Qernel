@@ -15,10 +15,3 @@
 
 
 class PureState(BaseState):
-
-    def __init__(self, ket=None, dm=None):
-        super().__init__()
-        if ket is not None:
-            self._ket = ket
-        if dm is not None:
-            self._dm = dm

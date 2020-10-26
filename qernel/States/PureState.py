@@ -12,3 +12,13 @@
 
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+class PureState(BaseState):
+
+    def __init__(self, ket=None, dm=None):
+        super().__init__()
+        if ket is not None:
+            self._ket = ket
+        if dm is not None:
+            self._dm = dm

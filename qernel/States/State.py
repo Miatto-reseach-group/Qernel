@@ -42,5 +42,5 @@ class State():
         :return: returns a boolean indicating whether the state is pure or not, True if state is pure, false otherwise
         :rtype: boolean
         """
-        return false #TODO: implement what tests it for real
+        return false #TODO: implement what tests it for real looking at dm? ket?
 

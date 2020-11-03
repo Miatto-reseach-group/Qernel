@@ -13,4 +13,22 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-class MixedState(BaseState):
+    ###########
+    # Imports #
+    ###########
+import numpy as np
+
+
+
+class DensityMatrix():
+
+    @classmethod
+    def __add__(cls, dm: DensityMatrix):
+        """
+        Performs a convex sum on two density matrices.
+        :param dm: the density to be added to the current one
+        :type dm: DensityMatrix
+        :return: a new State with density matrix corresponding to the convex sum of the states given as input
+        :rtype: State
+        """
+        return State(dm = np.sum(self, dm)) #TODO what about the ket of this state?

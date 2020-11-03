@@ -13,5 +13,26 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+    ###########
+    # Imports #
+    ###########
+import numpy as np
 
-class BaseState(ABC):
+
+
+class Ket():
+
+    def __init__(self, ket: np.array):
+        super().__init__()
+        self._ket = None
+
+    @classmethod
+    def __add__(cls, ket: Ket):
+        """
+        Superposes two kets
+        :param ket: the ket to be superposed to the current one
+        :type ket: Ket
+        :return: a new State with a ket corresponding to the superposition of the states given as input
+        :rtype: State
+        """
+        return State(np.sum(self, ket )) #TODO what about the density matrix of this state?

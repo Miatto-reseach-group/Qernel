@@ -14,4 +14,33 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-class PureState(BaseState):
+class State():
+    """
+    Class of a quantum state, either pure or mixed
+    """
+    def __init__(self, ket=None, dm=None):
+        super().__init__() #??? super of what?
+        self._dm = None
+        self._ket = None
+
+
+
+    ##############
+    # Properties #
+    ##############
+    @property
+    def ket(self, ket: np.array):
+        return self._ket
+
+    @property
+    def dens_mat(self, ket: np.array):
+        return self._ket
+
+    @property
+    def is_pure(self):
+        """
+        :return: returns a boolean indicating whether the state is pure or not, True if state is pure, false otherwise
+        :rtype: boolean
+        """
+        return false #TODO: implement what tests it for real
+

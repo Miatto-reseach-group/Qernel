@@ -50,6 +50,10 @@ print('A == B: ',  ket_a == ket_b)
 print('A != B: ',  ket_a != ket_b)
 print('A != A: ',  ket_a != ket_a)
 
+print('A.array()', ket_a.array())
+
+print('A.shape()', ket_a.shape())
+
 
 
 

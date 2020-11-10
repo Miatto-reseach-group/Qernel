@@ -115,4 +115,15 @@ class Ket():
         return np.allclose(self._ket, other._ket, rtol=rtol, atol=atol)
 
 
+    #############################################
+    ###               Methods                 ###
+    #############################################
+
+    def array (self) -> np.array:
+        return self._ket
+
+    def shape (self): #TODO what's the type of shape, a tuple of how many ints?!
+        return self._ket.shape
+
+
 

@@ -21,7 +21,7 @@ from DensityMatrix import *
 np.random.seed(42)
 
 #Creating Kets and DMs
-a = ([-0.5+0.32j, 0.5+0.89j])
+a = ([-0.5+0.32j, 0.1+0.89j, 0.4+0.23j])
 b = ([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
 
 ket_a = Ket(a)

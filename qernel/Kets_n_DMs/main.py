@@ -45,6 +45,9 @@ print('Ket 2.5*A: ',  f)
 g = ket_a / 3
 print('Ket A/3: ',  g)
 
+h = ket_a ** 5
+print('Ket A**5: ',  h)
+
 print('A == A: ',  ket_a == ket_a)
 print('A == B: ',  ket_a == ket_b)
 print('A != B: ',  ket_a != ket_b)
@@ -53,6 +56,10 @@ print('A != A: ',  ket_a != ket_a)
 print('A.array()', ket_a.array())
 
 print('A.shape()', ket_a.shape())
+
+tmp_dict = {ket_a : "Yay!"}
+print('dict?', tmp_dict[ket_a])
+
 
 
 

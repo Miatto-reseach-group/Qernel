@@ -32,6 +32,9 @@ class Ket():
         super().__init__()
         self._ket = ket
 
+    def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
+        return hash((self._ket.shape[0], np.sum(self._ket)))
+
     def __str__(self):
         return 'Ket: ' + np.array_str(self._ket)
 
@@ -64,7 +67,7 @@ class Ket():
 
     def __mul__(self, scalar: numeric) -> Ket:
         """
-        Superposes two kets
+        Multiplies a ket by a scalar
         :param self: the current ket
         :type self: Ket
         :param scalar: the ket to be superposed to the current one
@@ -76,7 +79,7 @@ class Ket():
 
     def __rmul__(self, scalar: numeric) -> Ket:
         """
-        Superposes two kets
+        Multiplies a ket by a scalar
         :param self: the current ket
         :type self: Ket
         :param scalar: scalar combined element-wise with the ket
@@ -88,7 +91,7 @@ class Ket():
 
     def __truediv__(self, scalar: numeric) -> Ket:
         """
-        Superposes two kets
+        Divides a ket by a scalar
         :param self: the current ket
         :type self: Ket
         :param scalar: scalar combined element-wise with the ket
@@ -97,6 +100,18 @@ class Ket():
         :rtype: Ket
         """
         return self._ket / scalar
+
+    def __pow__(self, scalar: numeric) -> Ket: #TODO fix it, what goes wrong?!
+        """
+        Raises a ket to a power
+        :param self: the current ket
+        :type self: Ket
+        :param scalar: scalar combined element-wise with the ket
+        :type scalar: numeric
+        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :rtype: Ket
+        """
+        return np.power(self._ket, scalar)
 
     def __eq__(self, other: Ket, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
         """

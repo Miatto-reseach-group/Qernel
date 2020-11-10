@@ -15,18 +15,23 @@
 
 import numpy as np
 from Ket import *
-from DensityMatrix import *
+#from DensityMatrix import *
 
 #seeding for reproducibility
 np.random.seed(42)
 
 #Creating Kets and DMs
-a = ([-0.5+0.32j, 0.1+0.89j, 0.4+0.23j])
-b = ([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
+a = np.array([-0.5+0.32j, 0.1+0.89j, 0.4+0.23j])
+b = np.array([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
 
 ket_a = Ket(a)
 ket_b = Ket(b)
+print(ket_a)
+print(ket_b)
 
+c = ket_a + ket_b
+print(c)
+"""
 dm_a = DensityMatrix(a)
 dm_b = DensityMatrix(b)
 
@@ -40,7 +45,5 @@ print(dm_a + dm_b) #convex sum
 print(ket_a - ket_b) #superposition
 print(dm_a - dm_b) #convex sum
 
-#inner product
 
-#outer product
-
+"""

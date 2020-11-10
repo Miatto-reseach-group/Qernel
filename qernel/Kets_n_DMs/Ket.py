@@ -16,34 +16,54 @@
     ###########
     # Imports #
     ###########
+from __future__ import annotations
 import numpy as np
-
-
 
 class Ket():
 
     def __init__(self, ket: np.array):
         super().__init__()
-        self._ket = None
+        self._ket = ket
 
-    @classmethod
-    def __add__(cls, ket: Ket):
+    def __str__(self):
+        return 'Ket: ' + np.array_str(self._ket)
+
+    def __repr__(self):
+            return {'ket': np.array_str(self._ket)}
+
+    def __add__(self, other: Ket) -> Ket:
         """
         Superposes two kets
-        :param ket: the ket to be superposed to the current one
-        :type ket: Ket
-        :return: a new State with a ket corresponding to the superposition of the states given as input
+        :param self: the current ket
+        :type self: Ket
+        :param other: the ket to be superposed to the current one
+        :type other: Ket
+        :return: a ket obtained by element-wise sum, not normalised!
         :rtype: State
         """
-        return State(np.sum(self, ket )) #TODO what about the density matrix of this state?
+        return np.add(self._ket, other._ket)
 
-    @classmethod
-    def __sub__(cls, ket: Ket):
+    def __sub__(self, other: Ket) -> Ket:
         """
         Superposes two kets
-        :param ket: the ket to be superposed to the current one
-        :type ket: Ket
-        :return: a new State with a ket corresponding to the superposition of the states given as input
+        :param self: the current ket
+        :type self: Ket
+        :param other: the ket to be superposed to the current one
+        :type other: Ket
+        :return: a ket obtained by element-wise substraction, not normalised!
         :rtype: State
         """
-        return State(np.sum(self, -ket))  # TODO what about the density matrix of this state?
+        return np.subtract(self._ket, other._ket)
+
+    def __mul__(self, other: Ket) -> Ket:
+        """
+        Superposes two kets
+        :param self: the current ket
+        :type self: Ket
+        :param other: the ket to be superposed to the current one
+        :type other: Ket
+        :return: a ket obtained by element-wise substraction, not normalised!
+        :rtype: State
+        """
+        return np.subtract(self._ket, other._ket)
+

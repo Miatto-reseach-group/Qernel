@@ -22,6 +22,10 @@ import numpy as np
 
 class DensityMatrix():
 
+    def __init__(self, dm: np.array):
+        super().__init__()
+        self._dm = None
+
     @classmethod
     def __add__(cls, dm: DensityMatrix):
         """

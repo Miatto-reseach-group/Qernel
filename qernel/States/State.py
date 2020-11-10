@@ -44,3 +44,11 @@ class State():
         """
         return false #TODO: implement what tests it for real looking at dm? ket?
 
+    @property
+    def is_valid(self):
+        """
+        :return: returns a boolean indicating whether the state is valid or not, True valid, false otherwise
+        :rtype: boolean
+        """
+        return false  # TODO: implement what tests it for real looking at dm? ket?
+

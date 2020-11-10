@@ -19,7 +19,7 @@ class State():
     Class of a quantum state, either pure or mixed
     """
     def __init__(self, ket=None, dm=None):
-        super().__init__() #??? super of what?
+        super().__init__()
         self._dm = None
         self._ket = None
 
@@ -33,8 +33,8 @@ class State():
         return self._ket
 
     @property
-    def dens_mat(self, ket: np.array):
-        return self._ket
+    def dens_mat(self, dm: np.array):
+        return self._dm
 
     @property
     def is_pure(self):
@@ -45,10 +45,19 @@ class State():
         return false #TODO: implement what tests it for real looking at dm? ket?
 
     @property
-    def is_valid(self):
+    def is_validQS(self):
         """
         :return: returns a boolean indicating whether the state is valid or not, True valid, false otherwise
         :rtype: boolean
         """
         return false  # TODO: implement what tests it for real looking at dm? ket?
+
+    @property
+    def purity(self):
+        """
+        :return: the purity ratio of that state
+        :rtype: float
+        """
+        return false  # TODO: implement
+
 

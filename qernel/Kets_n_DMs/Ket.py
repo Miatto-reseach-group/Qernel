@@ -13,14 +13,21 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-    ###########
-    # Imports #
-    ###########
+#############################################
+###             Imports                   ###
+#############################################
 from __future__ import annotations
 import numpy as np
 
+
+#############################################
+###             Class                     ###
+#############################################
 class Ket():
 
+    #############################################
+    ###             Dunder Methods            ###
+    #############################################
     def __init__(self, ket: np.array):
         super().__init__()
         self._ket = ket
@@ -39,7 +46,7 @@ class Ket():
         :param other: the ket to be superposed to the current one
         :type other: Ket
         :return: a ket obtained by element-wise sum, not normalised!
-        :rtype: State
+        :rtype: Ket
         """
         return np.add(self._ket, other._ket)
 
@@ -51,7 +58,7 @@ class Ket():
         :param other: the ket to be superposed to the current one
         :type other: Ket
         :return: a ket obtained by element-wise substraction, not normalised!
-        :rtype: State
+        :rtype: Ket
         """
         return np.subtract(self._ket, other._ket)
 
@@ -63,7 +70,7 @@ class Ket():
         :param scalar: the ket to be superposed to the current one
         :type scalar: numeric
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
-        :rtype: State
+        :rtype: Ket
         """
         return self._ket * scalar
 
@@ -72,10 +79,40 @@ class Ket():
         Superposes two kets
         :param self: the current ket
         :type self: Ket
-        :param scalar: the ket to be superposed to the current one
+        :param scalar: scalar combined element-wise with the ket
         :type scalar: numeric
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
-        :rtype: State
+        :rtype: Ket
         """
         return scalar * self._ket
+
+    def __truediv__(self, scalar: numeric) -> Ket:
+        """
+        Superposes two kets
+        :param self: the current ket
+        :type self: Ket
+        :param scalar: scalar combined element-wise with the ket
+        :type scalar: numeric
+        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :rtype: Ket
+        """
+        return self._ket / scalar
+
+    def __eq__(self, other: Ket, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
+        """
+        Determines whether two kets are equal up to numerical precision
+        :param self: the current ket
+        :type self: Ket
+        :param other: the ket to be compared with
+        :type other: Ket
+        :param rtol: numpy's relative tolerance
+        :type rtol: float
+        :param atol: numpy's absolute tolerance
+        :type atol: float
+        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :rtype: Ket
+        """
+        return np.allclose(self._ket, other._ket, rtol=rtol, atol=atol)
+
+
 

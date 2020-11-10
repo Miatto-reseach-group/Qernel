@@ -42,6 +42,17 @@ print('Ket A*2: ',  e)
 f = 2.5 * ket_a
 print('Ket 2.5*A: ',  f)
 
+g = ket_a / 3
+print('Ket A/3: ',  g)
+
+print('A == A: ',  ket_a == ket_a)
+print('A == B: ',  ket_a == ket_b)
+print('A != B: ',  ket_a != ket_b)
+print('A != A: ',  ket_a != ket_a)
+
+
+
+
 
 """
 dm_a = DensityMatrix(a)

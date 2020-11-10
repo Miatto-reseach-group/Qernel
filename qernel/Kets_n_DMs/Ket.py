@@ -55,15 +55,27 @@ class Ket():
         """
         return np.subtract(self._ket, other._ket)
 
-    def __mul__(self, other: Ket) -> Ket:
+    def __mul__(self, scalar: numeric) -> Ket:
         """
         Superposes two kets
         :param self: the current ket
         :type self: Ket
-        :param other: the ket to be superposed to the current one
-        :type other: Ket
-        :return: a ket obtained by element-wise substraction, not normalised!
+        :param scalar: the ket to be superposed to the current one
+        :type scalar: numeric
+        :return: a ket obtained by element-wise scalar multiplication, not normalised!
         :rtype: State
         """
-        return np.subtract(self._ket, other._ket)
+        return self._ket * scalar
+
+    def __rmul__(self, scalar: numeric) -> Ket:
+        """
+        Superposes two kets
+        :param self: the current ket
+        :type self: Ket
+        :param scalar: the ket to be superposed to the current one
+        :type scalar: numeric
+        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :rtype: State
+        """
+        return scalar * self._ket
 

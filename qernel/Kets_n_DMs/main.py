@@ -26,11 +26,23 @@ b = np.array([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
 
 ket_a = Ket(a)
 ket_b = Ket(b)
-print(ket_a)
-print(ket_b)
+print('Ket A: ',  ket_a)
+print('Ket B: ',  ket_b)
+
 
 c = ket_a + ket_b
-print(c)
+print('Ket A+B: ',  c)
+
+d = ket_a - ket_b
+print('Ket A-B: ',  d)
+
+e = ket_a * 2
+print('Ket A*2: ',  e)
+
+f = 2.5 * ket_a
+print('Ket 2.5*A: ',  f)
+
+
 """
 dm_a = DensityMatrix(a)
 dm_b = DensityMatrix(b)

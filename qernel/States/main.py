@@ -14,6 +14,8 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import numpy as np
+from Ket import *
+from DensityMatrix import *
 
 #seeding for reproducibility
 np.random.seed(42)
@@ -29,6 +31,16 @@ dm_a = DensityMatrix(a)
 dm_b = DensityMatrix(b)
 
 #Performing operations
-print(ket_a + ket_b)
-print(dm_a + dm_b)
+
+#addition
+print(ket_a + ket_b) #superposition
+print(dm_a + dm_b) #convex sum
+
+#substraction
+print(ket_a - ket_b) #superposition
+print(dm_a - dm_b) #convex sum
+
+#inner product
+
+#outer product
 

@@ -36,3 +36,14 @@ class DensityMatrix():
         :rtype: State
         """
         return State(dm = np.sum(self, dm)) #TODO what about the ket of this state?
+
+    @classmethod
+    def __sub__(cls, dm: DensityMatrix):
+        """
+        Performs a convex sum on two density matrices.
+        :param dm: the density to be added to the current one
+        :type dm: DensityMatrix
+        :return: a new State with density matrix corresponding to the convex sum of the states given as input
+        :rtype: State
+        """
+        return State(dm=np.sum(self, -dm))  # TODO what about the ket of this state?

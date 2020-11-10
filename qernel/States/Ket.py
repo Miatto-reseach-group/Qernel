@@ -36,3 +36,14 @@ class Ket():
         :rtype: State
         """
         return State(np.sum(self, ket )) #TODO what about the density matrix of this state?
+
+    @classmethod
+    def __sub__(cls, ket: Ket):
+        """
+        Superposes two kets
+        :param ket: the ket to be superposed to the current one
+        :type ket: Ket
+        :return: a new State with a ket corresponding to the superposition of the states given as input
+        :rtype: State
+        """
+        return State(np.sum(self, -ket))  # TODO what about the density matrix of this state?

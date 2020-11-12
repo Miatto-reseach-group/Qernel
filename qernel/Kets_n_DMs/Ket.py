@@ -35,7 +35,7 @@ class Ket():
     def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
         return hash((self._ket.shape[0], np.sum(self._ket)))
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Ket: ' + np.array_str(self._ket)
 
     def __repr__(self):
@@ -51,7 +51,7 @@ class Ket():
         :return: a ket obtained by element-wise sum, not normalised!
         :rtype: Ket
         """
-        return np.add(self._ket, other._ket)
+        return Ket(np.add(self._ket, other._ket))
 
     def __sub__(self, other: Ket) -> Ket:
         """
@@ -63,7 +63,7 @@ class Ket():
         :return: a ket obtained by element-wise substraction, not normalised!
         :rtype: Ket
         """
-        return np.subtract(self._ket, other._ket)
+        return Ket(np.subtract(self._ket, other._ket))
 
     def __mul__(self, scalar: numeric) -> Ket:
         """
@@ -75,7 +75,7 @@ class Ket():
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
         :rtype: Ket
         """
-        return self._ket * scalar
+        return Ket(self._ket * scalar)
 
     def __rmul__(self, scalar: numeric) -> Ket:
         """
@@ -87,7 +87,7 @@ class Ket():
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
         :rtype: Ket
         """
-        return scalar * self._ket
+        return Ket(scalar * self._ket)
 
     def __truediv__(self, scalar: numeric) -> Ket:
         """
@@ -99,7 +99,7 @@ class Ket():
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
         :rtype: Ket
         """
-        return self._ket / scalar
+        return Ket(self._ket / scalar)
 
     def __pow__(self, scalar: numeric) -> Ket: #TODO fix it, what goes wrong?!
         """
@@ -111,7 +111,7 @@ class Ket():
         :return: a ket obtained by element-wise scalar multiplication, not normalised!
         :rtype: Ket
         """
-        return np.power(self._ket, scalar)
+        return Ket(np.power(self._ket, scalar))
 
     def __eq__(self, other: Ket, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
         """
@@ -129,6 +129,16 @@ class Ket():
         """
         return np.allclose(self._ket, other._ket, rtol=rtol, atol=atol)
 
+    #############################################
+    ###               Properties              ###
+    #############################################
+    def is_pure(self) -> bool:
+        return True
+
+    @property
+    def is_valid_QS(self) -> bool:
+        return self.__eq__(self.normalise())
+
 
     #############################################
     ###               Methods                 ###
@@ -141,7 +151,7 @@ class Ket():
         return self._ket.shape
 
     def normalise(self) -> Ket:
-        return self._ket / np.linalg.norm(self._ket)
+        return Ket(self._ket / np.linalg.norm(self._ket))
 
 
 

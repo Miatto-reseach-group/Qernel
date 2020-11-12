@@ -140,5 +140,8 @@ class Ket():
     def shape (self): #TODO what's the type of shape, a tuple of how many ints?!
         return self._ket.shape
 
+    def normalise(self) -> Ket:
+        return self._ket / np.linalg.norm(self._ket)
+
 
 

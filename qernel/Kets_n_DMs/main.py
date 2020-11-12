@@ -60,6 +60,8 @@ print('A.shape()', ket_a.shape())
 tmp_dict = {ket_a : "Yay!"}
 print('dict?', tmp_dict[ket_a])
 
+print("A.normalise() ", ket_a.normalise())
+
 
 
 

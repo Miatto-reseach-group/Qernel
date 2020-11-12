@@ -176,16 +176,32 @@ class Ket():
     ###               Methods                 ###
     #############################################
     def normalise(self) -> Ket:
+        """
+        Returns the normalised Ket, now a valid quantum state
+        :return: the normalised Ket
+        """
         return Ket(self._ket / np.linalg.norm(self._ket))
 
     def complex_conjugate(self) -> Ket:
+        """
+        Performs the complex conjugate on Ket
+        :return: complet conjugate of Ket
+        """
         return Ket(np.conj(self._ket))
 
     def conjugate_transpose(self): #TODO can we decently call this a Ket object? shouldn't it be a bra?
+        """
+        Performs conjugate transpose on the Ket, turning it into a bra
+        :return: conjugate transpose of input Ket, a.k.a. a Bra
+        """
         return np.transpose(np.conj(self._ket)) #TODO is this actually working and returning what we want?
 
     #TODO check whether this is what we really want
     def inner_prod(self, other: Ket) -> numeric:
+        """
+        Performs inner product (dot product) on two kets, since both are 1D arrays it returns a scalar
+        :return: a scalar resulting from the inner product of the two kets
+        """
         return np.dot(self._ket, other._ket)
 
 

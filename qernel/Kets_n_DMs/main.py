@@ -20,7 +20,7 @@ from Ket import *
 #seeding for reproducibility
 np.random.seed(42)
 
-#Creating Kets and DMs
+#Creating Kets
 a = np.array([-0.5+0.32j, 0.1+0.89j, 0.4+0.23j])
 b = np.array([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
 
@@ -28,7 +28,6 @@ ket_a = Ket(a)
 ket_b = Ket(b)
 print('Ket A: ',  ket_a)
 print('Ket B: ',  ket_b)
-
 
 c = ket_a + ket_b
 print('Ket A+B: ',  c)

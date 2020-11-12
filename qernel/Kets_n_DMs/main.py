@@ -53,14 +53,19 @@ print('A == B: ',  ket_a == ket_b)
 print('A != B: ',  ket_a != ket_b)
 print('A != A: ',  ket_a != ket_a)
 
-print('A.array()', ket_a.array())
-
-print('A.shape()', ket_a.shape())
+print('A.array', ket_a.array)
+print('A.shape', ket_a.shape)
+print("A.normalise.is_pure ", ket_a.normalise().is_pure)
+print("A.normalise().is_valid_QS ", ket_a.normalise().is_valid_QS)
+print("A.is_valid_QS ", ket_a.is_valid_QS)
 
 tmp_dict = {ket_a : "Yay!"}
 print('dict?', tmp_dict[ket_a])
 
 print("A.normalise() ", ket_a.normalise())
+
+
+
 
 
 

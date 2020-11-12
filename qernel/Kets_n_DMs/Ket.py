@@ -60,7 +60,8 @@ class Ket():
         :type self: Ket
         :param other: the ket to be superposed to the current one
         :type other: Ket
-        :return: a ket obtained by element-wise substraction, not normalised!
+        :return: a ket obtained by element-wise substraction, not
+                normalised!
         :rtype: Ket
         """
         return Ket(np.subtract(self._ket, other._ket))
@@ -72,7 +73,8 @@ class Ket():
         :type self: Ket
         :param scalar: the ket to be superposed to the current one
         :type scalar: numeric
-        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :return: a ket obtained by element-wise scalar multiplication, not
+                normalised!
         :rtype: Ket
         """
         return Ket(self._ket * scalar)
@@ -84,7 +86,8 @@ class Ket():
         :type self: Ket
         :param scalar: scalar combined element-wise with the ket
         :type scalar: numeric
-        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :return: a ket obtained by element-wise scalar multiplication, not
+                normalised!
         :rtype: Ket
         """
         return Ket(scalar * self._ket)
@@ -96,7 +99,8 @@ class Ket():
         :type self: Ket
         :param scalar: scalar combined element-wise with the ket
         :type scalar: numeric
-        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :return: a ket obtained by element-wise scalar multiplication, not
+                normalised!
         :rtype: Ket
         """
         return Ket(self._ket / scalar)
@@ -108,7 +112,8 @@ class Ket():
         :type self: Ket
         :param scalar: scalar combined element-wise with the ket
         :type scalar: numeric
-        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :return: a ket obtained by element-wise scalar multiplication, not
+                normalised!
         :rtype: Ket
         """
         return Ket(np.power(self._ket, scalar))
@@ -124,7 +129,8 @@ class Ket():
         :type rtol: float
         :param atol: numpy's absolute tolerance
         :type atol: float
-        :return: a ket obtained by element-wise scalar multiplication, not normalised!
+        :return: a ket obtained by element-wise scalar multiplication, not
+                normalised!
         :rtype: Ket
         """
         return np.allclose(self._ket, other._ket, rtol=rtol, atol=atol)
@@ -132,24 +138,35 @@ class Ket():
     #############################################
     ###               Properties              ###
     #############################################
+    @property
     def is_pure(self) -> bool:
+        """
+        Tells whether a ket is pure or not
+        :return: a boolean telling whether the ket is pure or not
+        """
         return True
 
     @property
     def is_valid_QS(self) -> bool:
+        """
+        Tells whether a ket is a valid quantum state by checking whether
+         it is normalised or no
+        :return: a boolean telling whether the ket is pure or not
+        """
         return self.__eq__(self.normalise())
+
+    @property
+    def array (self) -> np.array:
+        return self._ket
+
+    @property
+    def shape (self): #TODO what's the type of shape, a tuple of how many ints?!
+        return self._ket.shape
 
 
     #############################################
     ###               Methods                 ###
     #############################################
-
-    def array (self) -> np.array:
-        return self._ket
-
-    def shape (self): #TODO what's the type of shape, a tuple of how many ints?!
-        return self._ket.shape
-
     def normalise(self) -> Ket:
         return Ket(self._ket / np.linalg.norm(self._ket))
 

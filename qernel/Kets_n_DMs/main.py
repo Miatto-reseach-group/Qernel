@@ -58,12 +58,18 @@ print('A.shape', ket_a.shape)
 print("A.normalise.is_pure ", ket_a.normalise().is_pure)
 print("A.normalise().is_valid_QS ", ket_a.normalise().is_valid_QS)
 print("A.is_valid_QS ", ket_a.is_valid_QS)
+print("A.purity ", ket_a.purity)
 
 tmp_dict = {ket_a : "Yay!"}
 print('dict?', tmp_dict[ket_a])
 
 print("A.normalise() ", ket_a.normalise())
 
+print("A.complex_conjugate()", ket_a.complex_conjugate())
+
+print("A.conjugate_transpose()", ket_a.conjugate_transpose())
+
+print("A.inner_prod(B) ", ket_a.inner_prod(ket_b))
 
 
 

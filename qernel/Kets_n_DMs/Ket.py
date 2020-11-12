@@ -147,6 +147,14 @@ class Ket():
         return True
 
     @property
+    def purity(self) -> float:
+        """
+        Returns the purity of a ket, always 1 #TODO is this true?
+        :return: a float representing the purity of the ket
+        """
+        return 1.0
+
+    @property
     def is_valid_QS(self) -> bool:
         """
         Tells whether a ket is a valid quantum state by checking whether
@@ -170,5 +178,14 @@ class Ket():
     def normalise(self) -> Ket:
         return Ket(self._ket / np.linalg.norm(self._ket))
 
+    def complex_conjugate(self) -> Ket:
+        return Ket(np.conj(self._ket))
+
+    def conjugate_transpose(self): #TODO can we decently call this a Ket object? shouldn't it be a bra?
+        return np.transpose(np.conj(self._ket)) #TODO is this actually working and returning what we want?
+
+    #TODO check whether this is what we really want
+    def inner_prod(self, other: Ket) -> numeric:
+        return np.dot(self._ket, other._ket)
 
 

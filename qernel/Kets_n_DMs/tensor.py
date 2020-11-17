@@ -9,6 +9,6 @@ class Tensor:
 
     def __add__(self, other: Tensor) -> Tensor:
         """
-        sum of two tensor
+        sum of two tensors
         """
         return Tensor(self._array + other._array)

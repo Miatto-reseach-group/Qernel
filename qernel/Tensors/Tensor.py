@@ -93,7 +93,6 @@ class Tensor(ABC):
         pass
 
     @property
-    @abstractmethod
     def complex_conjugate(self) -> Tensor:
         """
         Performs the complex conjugate on Tensor
@@ -107,7 +106,7 @@ class Tensor(ABC):
         return np.transpose(np.conj(self))
 
     #TODO check whether this is what we really want
-    def inner_prod(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
+    def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
         """
         Performs inner product (dot product) on:
          ket scalar
@@ -115,4 +114,14 @@ class Tensor(ABC):
          operator operator
         """
         return np.dot(other, self)
+
+    #TODO check whether this is what we really want
+    def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
+        """
+        Performs iouter product (dot product) on:
+         ket scalar
+         ket ket
+         operator operator
+        """
+        return np.outer(other, self)
 

@@ -31,7 +31,7 @@ print('Ket B: ',  ket_b)
 
 c = ket_a + ket_b
 print('Ket A+B: ',  c)
-
+"""
 d = ket_a - ket_b
 print('Ket A-B: ',  d)
 
@@ -77,7 +77,7 @@ print("A.inner_prod(B) ", ket_a.inner_prod(ket_b))
 
 
 
-"""
+
 dm_a = DensityMatrix(a)
 dm_b = DensityMatrix(b)
 

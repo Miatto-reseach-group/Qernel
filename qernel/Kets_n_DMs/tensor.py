@@ -12,3 +12,4 @@ class Tensor:
         sum of two tensors
         """
         return Tensor(self._array + other._array)
+        # or return Tensor(np.add([self, other]) ?

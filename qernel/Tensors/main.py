@@ -14,8 +14,8 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import numpy as np
-from Tensor import *
-
+from Ket import *
+#from DensityMatrix import *
 
 #seeding for reproducibility
 np.random.seed(42)
@@ -24,18 +24,26 @@ np.random.seed(42)
 a = np.array([-0.5+0.32j, 0.1+0.89j, 0.4+0.23j])
 b = np.array([-0.3+0.32j, 0.2+0.89j, 0.5+21j])
 
-tens_a = Tensor(a)
-tens_b = Tensor(b)
-print('Tensor A: ',  tens_a)
-print('Tensor B: ',  tens_b)
+ket_a = Ket(a)
+ket_b = Ket(b)
+print('Ket A: ',  ket_a)
+print('Ket B: ',  ket_b)
 
-print("A+B ", tens_a + tens_b)
-print("A-B ", tens_a - tens_b)
-print("A*3 ", tens_a * 3)
-print("3.0*A ", 3.0 * tens_a)
-print("A/10 ", tens_a/10)
+c = ket_a + ket_b
+print('Ket A+B: ',  c)
 
-"""
+d = ket_a - ket_b
+print('Ket A-B: ',  d)
+
+e = ket_a * 2
+print('Ket A*2: ',  e)
+
+f = 2.5 * ket_a
+print('Ket 2.5*A: ',  f)
+
+g = ket_a / 3
+print('Ket A/3: ',  g)
+
 h = ket_a ** 5
 print('Ket A**5: ',  h)
 
@@ -69,7 +77,7 @@ print("A.inner_prod(B) ", ket_a.inner_prod(ket_b))
 
 
 
-
+"""
 dm_a = DensityMatrix(a)
 dm_b = DensityMatrix(b)
 
@@ -82,5 +90,6 @@ print(dm_a + dm_b) #convex sum
 #substraction
 print(ket_a - ket_b) #superposition
 print(dm_a - dm_b) #convex sum
+
 
 """

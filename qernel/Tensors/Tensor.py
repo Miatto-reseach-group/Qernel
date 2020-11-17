@@ -19,9 +19,9 @@
 from __future__ import annotations #for returning current Type
 from typing import TypeVar, Union
 import numpy as np
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 
-class Tensor(ABC):
+class Tensor(ABCMeta):
     def __init__(self, tensor: np.array):
         self._arr = tensor
 

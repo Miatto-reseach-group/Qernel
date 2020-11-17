@@ -202,6 +202,6 @@ class Ket():
         Performs inner product (dot product) on two kets, since both are 1D arrays it returns a scalar
         :return: a scalar resulting from the inner product of the two kets
         """
-        return np.dot(self._ket, other._ket)
+        return np.dot(other._ket, self._ket)
 
 

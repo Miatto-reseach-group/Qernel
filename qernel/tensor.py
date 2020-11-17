@@ -16,73 +16,96 @@
 #############################################
 ###             Imports                   ###
 #############################################
-from __future__ import annotations
+from __future__ import annotations #for returning current Type
+from typing import TypeVar, Union
 import numpy as np
-from Tensor import *
-from Kets_n_DMs import *
+from abc import ABC, abstractmethod
 
-
-#############################################
-###             Class                     ###
-#############################################
-class Ket(Kets_n_DMs):
+class Tensor(ABC):
     def __init__(self, tensor: np.array):
-        super().__init__(tensor)
+        self._arr = tensor
+
+    def __array__(self) -> np.array:
+        return self._arr
+
+    def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
+        return hash((self.shape[0], np.sum(self)))
 
     def __str__(self) -> str:
-        return 'Ket: ' + np.array_str(self._arr)
+        return 'Tensor: ' + np.array_str(self._arr)
 
     def __repr__(self):
-            return {'ket': np.array_str(self)}
+            return {'tensor': np.array_str(self)}
 
-    #############################################
-    ###               Properties              ###
-    #############################################
-    @property
-    def is_pure(self) -> bool:
+#TODO : do we want to allow sub/add of scalars element-wise? np does
+    def __add__(self, other: Tensor) -> Tensor:
         """
-        Tells whether a Ket/DM or is pure or not
+        sum of two tensors
         """
-        True
+        return Tensor(np.add(self, other))
 
-    @property
-    def purity(self) -> float:
+    def __sub__(self, other: Tensor) -> Tensor:
         """
-        Returns the purity of a Ket/DM
+        subtraction of two tensors
         """
-        1.0
+        return Tensor(np.subtract(self, other))
 
-    @property
-    def is_valid_QS(self) -> bool:
+    def __mul__(self, scalar: numeric) -> Tensor:
         """
-        Tells whether a Ket/DM is a valid quantum state
+        multiplication of tensor by a scalar
         """
-        return self.__eq__(self.normalise())
+        return Tensor(self * scalar)
+
+    def __rmul__(self, scalar: numeric) -> Tensor:
+        """
+        right multiplication of tensor by a scalar
+        """
+        return Tensor(scalar * self)
+
+    def __truediv__(self, other: numeric) -> Tensor:
+        """
+        division of tensor by a scalar
+        """
+        return Tensor(self / scalar)
+
+    def __pow__(self, other: numeric) -> Tensor: #TODO fix it, what goes wrong?!
+        """
+        power of tensor by a scalar
+        """
+        return Tensor(np.power(self, scalar))
+
+    def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
+        """
+        equality comparison of two tensors
+        """
+        return np.allclose(self, other, rtol=rtol, atol=atol)
 
     #############################################
     ###               Methods                 ###
     #############################################
+
     @property
-    def normalise(self) -> Ket:
+    @abstractmethod
+    def normalise(self) -> Tensor:
         """
         Returns the normalised Ket/DM, now a valid quantum state
         """
-        return Ket(self / np.linalg.norm(self))
+        pass
 
     @property
-    def complex_conjugate(self) -> Ket:
+    def complex_conjugate(self) -> Tensor:
         """
         Performs the complex conjugate on Tensor
         """
         return Ket(np.conj(self))
 
-    def dagger(self) -> Ket:
+    def dagger(self) -> Tensor:
         """
         Performs conjugate transpose on the Tensor
         """
         return np.transpose(np.conj(self))
 
-    # TODO check whether this is what we really want
+    #TODO check whether this is what we really want
     def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
         """
         Performs inner product (dot product) on:
@@ -92,7 +115,7 @@ class Ket(Kets_n_DMs):
         """
         return np.dot(other, self)
 
-    # TODO check whether this is what we really want
+    #TODO check whether this is what we really want
     def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
         """
         Performs iouter product (dot product) on:
@@ -101,3 +124,4 @@ class Ket(Kets_n_DMs):
          operator operator
         """
         return np.outer(other, self)
+

@@ -21,6 +21,7 @@ from typing import TypeVar, Union
 import numpy as np
 from abc import ABC, abstractmethod
 
+#TODO: so what type do we return here since we can't instantiate the class!?
 class Tensor(ABC):
     def __init__(self, tensor: np.array):
         self._arr = tensor
@@ -37,42 +38,42 @@ class Tensor(ABC):
     def __repr__(self):
             return 'Tensor: ' + np.array_str(self._arr)
 
-#TODO : do we want to allow sub/add of scalars element-wise? np does
-    def __add__(self, other: Tensor):
+    #TODO : do we want to allow sub/add of scalars element-wise? np does
+    def __add__(self, other: Tensor) -> np.array:
         """
         sum of two tensors
         """
         return np.add(self, other)
 
-    def __sub__(self, other: Tensor) -> Tensor:
+    def __sub__(self, other: Tensor) -> np.array:
         """
         subtraction of two tensors
         """
-        return Tensor(np.subtract(self, other))
+        return np.subtract(self, other)
 
-    def __mul__(self, scalar: numeric) -> Tensor:
+    def __mul__(self, scalar: numeric) -> np.array:
         """
         multiplication of tensor by a scalar
         """
-        return Tensor(self * scalar)
+        return np.multiply(self, scalar)
 
-    def __rmul__(self, scalar: numeric) -> Tensor:
+    def __rmul__(self, scalar: numeric) -> np.array:
         """
         right multiplication of tensor by a scalar
         """
-        return Tensor(scalar * self)
+        return np.multiply(scalar, self)
 
-    def __truediv__(self, other: numeric) -> Tensor:
+    def __truediv__(self, scalar: numeric) -> np.array:
         """
         division of tensor by a scalar
         """
-        return Tensor(self / scalar)
+        return np.divide(self, scalar)
 
-    def __pow__(self, other: numeric) -> Tensor: #TODO fix it, what goes wrong?!
+    def __pow__(self, scalar: numeric) -> np.array: #TODO fix it, what goes wrong?!
         """
         power of tensor by a scalar
         """
-        return Tensor(np.power(self, scalar))
+        return np.power(self, scalar)
 
     def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
         """

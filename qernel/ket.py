@@ -35,13 +35,48 @@ class Ket(Kets_n_DMs):
     def __repr__(self):
             return 'Ket: ' + np.array_str(self._arr)
 
-    def __add__(self, other: Tensor) -> Tensor:
+    #TODO but then if Tensor is abstract we need to tightly type here
+    def __add__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
         """
-        sum of two tensors
+        sum of one ket and one tensor
         """
-        #return super(Ket, self).__add__(other)
         return Ket(super().__add__(other))
 
+    def __sub__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
+        """
+        subtraction of one ket and one tensor
+        """
+        return Ket(super().__sub__(other))
+
+    def __mul__(self, scalar: numeric) -> Ket:
+        """
+        multiplication of ket by a scalar
+        """
+        return Ket(super().__mul__(scalar))
+
+    def __rmul__(self, scalar: numeric) -> Ket:
+        """
+        right multiplication of ket by a scalar
+        """
+        return Ket(super().__rmul__(scalar))
+
+    def __truediv__(self, scalar: numeric) -> Ket:
+        """
+        division of ket by a scalar
+        """
+        return Ket(super().__truediv__(scalar))
+
+    def __pow__(self, scalar: numeric) -> Ket: #TODO fix it, what goes wrong?! + type returned?
+        """
+        power of tensor by a scalar
+        """
+        return Ket(super().__pow__(scalar)) #TODO does it really return a ket?
+
+    def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
+        """
+        equality comparison of two tensors
+        """
+        return super().__eq__(other, rtol, atol)
 
 
     #############################################

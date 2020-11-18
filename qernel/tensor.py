@@ -35,7 +35,7 @@ class Tensor(ABC):
         return 'Tensor: ' + np.array_str(self._arr)
 
     def __repr__(self):
-            return {'tensor': np.array_str(self)}
+            return 'Tensor: ' + np.array_str(self._arr)
 
 #TODO : do we want to allow sub/add of scalars element-wise? np does
     def __add__(self, other: Tensor) -> Tensor:

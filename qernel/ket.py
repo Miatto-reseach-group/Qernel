@@ -35,6 +35,15 @@ class Ket(Kets_n_DMs):
     def __repr__(self):
             return 'Ket: ' + np.array_str(self._arr)
 
+    def __add__(self, other: Tensor) -> Tensor:
+        """
+        sum of two tensors
+        """
+        #return super(Ket, self).__add__(other)
+        return Ket(super().__add__(other))
+
+
+
     #############################################
     ###               Properties              ###
     #############################################

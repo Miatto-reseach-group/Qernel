@@ -38,11 +38,11 @@ class Tensor(ABC):
             return 'Tensor: ' + np.array_str(self._arr)
 
 #TODO : do we want to allow sub/add of scalars element-wise? np does
-    def __add__(self, other: Tensor) -> Tensor:
+    def __add__(self, other: Tensor):
         """
         sum of two tensors
         """
-        return Tensor(np.add(self, other))
+        return np.add(self, other)
 
     def __sub__(self, other: Tensor) -> Tensor:
         """

@@ -31,9 +31,9 @@ class Ket(Kets_n_DMs):
 
     def __str__(self) -> str:
         return 'Ket: ' + np.array_str(self._arr)
-
+    #TODO: is it ok to have same for str and repr?
     def __repr__(self):
-            return {'ket': np.array_str(self)}
+            return 'Ket: ' + np.array_str(self._arr)
 
     #############################################
     ###               Properties              ###

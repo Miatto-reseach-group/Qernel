@@ -94,30 +94,30 @@ class Tensor(ABC):
         pass
 
     @property
-    def complex_conjugate(self) -> Tensor:
+    def complex_conjugate(self) -> np.array:
         """
         Performs the complex conjugate on Tensor
         """
-        return Ket(np.conj(self))
+        return np.conj(self)
 
-    def dagger(self) -> Tensor:
+    def dagger(self) -> np.array:
         """
         Performs conjugate transpose on the Tensor
         """
         return np.transpose(np.conj(self))
 
     #TODO check whether this is what we really want
-    def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
+    def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, np.array]:
         """
         Performs inner product (dot product) on:
          ket scalar
          ket ket
          operator operator
         """
-        return np.dot(other, self)
+        return np.dot(self, other)
 
     #TODO check whether this is what we really want
-    def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
+    def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, np.array]:
         """
         Performs iouter product (dot product) on:
          ket scalar

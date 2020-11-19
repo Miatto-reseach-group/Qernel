@@ -15,7 +15,6 @@
 
 import numpy as np
 from qernel import Ket
-#from DensityMatrix import *
 
 #seeding for reproducibility
 np.random.seed(42)
@@ -52,32 +51,34 @@ print('A == B: ',  ket_a == ket_b)
 print('A != B: ',  ket_a != ket_b)
 print('A != A: ',  ket_a != ket_a)
 
-#TODO doesn't work
+print("A.purity: ", ket_a.purity)
+print("A.is_pure: ", ket_a.is_pure)
+
+print("A.complex_conjugate", ket_a.complex_conjugate)
+
+# print("A.inner: ", ket_a.inner()) => NO
+# print("A.inner: ", ket_a.inner) => NO
+print("A.inner: ", ket_a.inner(2)) #No?
+
+
+#TODO doesn't work and is needed for all the rest!
 #print('A.shape', ket_a.shape)
 
 
 
-print("A.normalise ", ket_a.normalise)
 """
+tmp_dict = {ket_a : "Yay!"}
+print('as key in dict?', tmp_dict[ket_a])
+
+print("A.inner: ", ket_a.inner())
+print("A.outer: ", ket_a.outer)
+
+#print("A.dagger", ket_a.dagger)
+print("A.normalise ", ket_a.normalise)
 print("A.normalise().is_valid_QS ", ket_a.normalise().is_valid_QS)
 print("A.is_valid_QS ", ket_a.is_valid_QS)
-print("A.purity ", ket_a.purity)
-
-tmp_dict = {ket_a : "Yay!"}
-print('dict?', tmp_dict[ket_a])
-
 print("A.normalise() ", ket_a.normalise())
-
-print("A.complex_conjugate()", ket_a.complex_conjugate())
-
-print("A.conjugate_transpose()", ket_a.conjugate_transpose())
-
 print("A.inner_prod(B) ", ket_a.inner_prod(ket_b))
-
-
-
-
-
 
 
 

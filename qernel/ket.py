@@ -29,14 +29,19 @@ class Ket(Kets_n_DMs):
     def __init__(self, tensor: np.array):
         super().__init__(tensor)
 
+    def __array__(self) -> np.array:
+        return super().__array__()
+
+    def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
+        return super().__hash__()
+
     def __str__(self) -> str:
         return 'Ket: ' + np.array_str(self._arr)
     #TODO: is it ok to have same for str and repr?
     def __repr__(self):
             return 'Ket: ' + np.array_str(self._arr)
 
-    def __array__(self) -> np.array:
-        return super().__array__()
+
 
     #TODO but then if Tensor is abstract we need to tightly type here
     def __add__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
@@ -71,13 +76,13 @@ class Ket(Kets_n_DMs):
 
     def __pow__(self, scalar: numeric) -> Ket: #TODO fix it, what goes wrong?! + type returned?
         """
-        power of tensor by a scalar
+        power of ket by a scalar
         """
         return Ket(super().__pow__(scalar)) #TODO does it really return a ket?
 
     def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
         """
-        equality comparison of two tensors
+        equality comparison of two kets (or at least one ket and one tensor)
         """
         return super().__eq__(other, rtol, atol)
 
@@ -90,14 +95,14 @@ class Ket(Kets_n_DMs):
         """
         Tells whether a Ket/DM or is pure or not
         """
-        True
+        return True
 
     @property
     def purity(self) -> float:
         """
         Returns the purity of a Ket/DM
         """
-        1.0
+        return 1.0
 
     @property
     def is_valid_QS(self) -> bool:
@@ -121,13 +126,13 @@ class Ket(Kets_n_DMs):
         """
         Performs the complex conjugate on Tensor
         """
-        return Ket(np.conj(self))
+        return Ket(super().complex_conjugate)
 
     def dagger(self) -> Ket:
         """
         Performs conjugate transpose on the Tensor
         """
-        return np.transpose(np.conj(self))
+        return Ket(super().dagger())
 
     # TODO check whether this is what we really want
     def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
@@ -137,7 +142,7 @@ class Ket(Kets_n_DMs):
          ket ket
          operator operator
         """
-        return np.dot(other, self)
+        return np.dot(self, other)
 
     # TODO check whether this is what we really want
     def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:

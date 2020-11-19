@@ -26,54 +26,57 @@ class Tensor(ABC):
     def __init__(self, tensor: np.array):
         self._arr = tensor
 
-    def __array__(self) -> np.array:
+    def __array__(self, *args, **kwargs) -> np.array:
         return self._arr
+
+    def __array_ufunc__(self, ufunc, method, *inputs, **kwargs) -> Tensor:
+        return getattr(ufunc, method)(*[np.array(i) for i in inputs], **kwargs)
 
     def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
         return hash((self.shape[0], np.sum(self)))
 
     def __str__(self) -> str:
-        return 'Tensor: ' + np.array_str(self._arr)
+        return f'{self.__class__.__name__}: ' + np.array_str(self._arr)
 
     def __repr__(self):
-            return 'Tensor: ' + np.array_str(self._arr)
+            return f'{self.__class__.__name__}: ' + np.array_str(self._arr)
 
     #TODO : do we want to allow sub/add of scalars element-wise? np does
     def __add__(self, other: Tensor) -> np.array:
         """
         sum of two tensors
         """
-        return np.add(self, other)
+        return type(self)(self._arr + other._arr)
 
     def __sub__(self, other: Tensor) -> np.array:
         """
         subtraction of two tensors
         """
-        return np.subtract(self, other)
+        return type(self)(self._arr + other._arr)
 
     def __mul__(self, scalar: numeric) -> np.array:
         """
         multiplication of tensor by a scalar
         """
-        return np.multiply(self, scalar)
+        return type(self)(self._arr * scalar)
 
     def __rmul__(self, scalar: numeric) -> np.array:
         """
         right multiplication of tensor by a scalar
         """
-        return np.multiply(scalar, self)
+        return type(self)(self._arr * scalar)
 
     def __truediv__(self, scalar: numeric) -> np.array:
         """
         division of tensor by a scalar
         """
-        return np.divide(self, scalar)
+        return type(self)(self._arr / scalar)
 
     def __pow__(self, scalar: numeric) -> np.array: #TODO fix it, what goes wrong?!
         """
         power of tensor by a scalar
         """
-        return np.power(self, scalar)
+        return type(self)(self._arr ** scalar)
 
     def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
         """
@@ -86,43 +89,17 @@ class Tensor(ABC):
     #############################################
 
     @property
-    @abstractmethod
-    def normalise(self) -> Tensor:
-        """
-        Returns the normalised Ket/DM, now a valid quantum state
-        """
-        pass
-
-    @property
-    def complex_conjugate(self) -> np.array:
+    def conj(self) -> Tensor:
         """
         Performs the complex conjugate on Tensor
         """
-        return np.conj(self)
+        return type(self)(np.conj(self))
 
-    def dagger(self) -> np.array:
+    @property
+    def dagger(self) -> Tensor:
         """
-        Performs conjugate transpose on the Tensor
+        Performs conjugate transpose on the Tensor 
         """
-        return np.transpose(np.conj(self))
-
-    #TODO check whether this is what we really want
-    def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, np.array]:
-        """
-        Performs inner product (dot product) on:
-         ket scalar
-         ket ket
-         operator operator
-        """
-        return np.dot(self, other)
-
-    #TODO check whether this is what we really want
-    def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, np.array]:
-        """
-        Performs iouter product (dot product) on:
-         ket scalar
-         ket ket
-         operator operator
-        """
-        return np.outer(other, self)
+        # TODO: this will change for rank-n tensors
+        return type(self)(np.transpose(np.conj(self)))
 

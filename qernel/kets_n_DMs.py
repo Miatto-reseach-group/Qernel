@@ -26,6 +26,14 @@ from .tensor import *
 #############################################
 class Kets_n_DMs(Tensor):
 
+    @property
+    @abstractmethod
+    def normalise(self) -> Tensor:
+        """
+        Returns the normalised Ket/DM, now a valid quantum state
+        """
+        pass
+
     #############################################
     ###               Properties              ###
     #############################################

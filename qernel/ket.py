@@ -29,63 +29,6 @@ class Ket(Kets_n_DMs):
     def __init__(self, tensor: np.array):
         super().__init__(tensor)
 
-    def __array__(self) -> np.array:
-        return super().__array__()
-
-    def __hash__(self) -> int: #TODO strenghten this hash function! How can we improve it?
-        return super().__hash__()
-
-    def __str__(self) -> str:
-        return 'Ket: ' + np.array_str(self._arr)
-    #TODO: is it ok to have same for str and repr?
-    def __repr__(self):
-            return 'Ket: ' + np.array_str(self._arr)
-
-
-
-    #TODO but then if Tensor is abstract we need to tightly type here
-    def __add__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
-        """
-        sum of one ket and one tensor
-        """
-        return Ket(super().__add__(other))
-
-    def __sub__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
-        """
-        subtraction of one ket and one tensor
-        """
-        return Ket(super().__sub__(other))
-
-    def __mul__(self, scalar: numeric) -> Ket:
-        """
-        multiplication of ket by a scalar
-        """
-        return Ket(super().__mul__(scalar))
-
-    def __rmul__(self, scalar: numeric) -> Ket:
-        """
-        right multiplication of ket by a scalar
-        """
-        return Ket(super().__rmul__(scalar))
-
-    def __truediv__(self, scalar: numeric) -> Ket:
-        """
-        division of ket by a scalar
-        """
-        return Ket(super().__truediv__(scalar))
-
-    def __pow__(self, scalar: numeric) -> Ket: #TODO fix it, what goes wrong?! + type returned?
-        """
-        power of ket by a scalar
-        """
-        return Ket(super().__pow__(scalar)) #TODO does it really return a ket?
-
-    def __eq__(self, other: Tensor, rtol: float = 1e-05, atol: float = 1e-08) -> bool:
-        """
-        equality comparison of two kets (or at least one ket and one tensor)
-        """
-        return super().__eq__(other, rtol, atol)
-
 
     #############################################
     ###               Properties              ###
@@ -126,30 +69,4 @@ class Ket(Kets_n_DMs):
         """
         Performs the complex conjugate on Tensor
         """
-        return Ket(super().complex_conjugate)
-
-    def dagger(self) -> Ket:
-        """
-        Performs conjugate transpose on the Tensor
-        """
-        return Ket(super().dagger())
-
-    # TODO check whether this is what we really want
-    def inner(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
-        """
-        Performs inner product (dot product) on:
-         ket scalar
-         ket ket
-         operator operator
-        """
-        return np.dot(self, other)
-
-    # TODO check whether this is what we really want
-    def outer(self, other: Union[Tensor, numeric]) -> Union[numeric, Tensor]:
-        """
-        Performs iouter product (dot product) on:
-         ket scalar
-         ket ket
-         operator operator
-        """
-        return np.outer(other, self)
+        return Ket(np.conj(self))

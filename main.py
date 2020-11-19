@@ -54,7 +54,7 @@ print('A != A: ',  ket_a != ket_a)
 print("A.purity: ", ket_a.purity)
 print("A.is_pure: ", ket_a.is_pure)
 
-print("A.complex_conjugate", ket_a.complex_conjugate)
+print("A.conj", ket_a.conj)
 print("np.conj(A)", np.conj(ket_a))
 
 # print("A.inner: ", ket_a.inner()) => NO
@@ -64,7 +64,7 @@ print("np.dot(A,B): ", np.dot(ket_a, ket_b))
 
 
 #TODO doesn't work and is needed for all the rest!
-#print('A.shape', ket_a.shape)
+print('np.shape(A)', np.shape(ket_a))
 
 
 

@@ -35,6 +35,9 @@ class Ket(Kets_n_DMs):
     def __repr__(self):
             return 'Ket: ' + np.array_str(self._arr)
 
+    def __array__(self) -> np.array:
+        return super().__array__()
+
     #TODO but then if Tensor is abstract we need to tightly type here
     def __add__(self, other: Tensor) -> Ket: #TODO does it retunr a ket indeed?
         """
